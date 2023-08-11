@@ -1,0 +1,11 @@
+{
+    "name": "gsiorx/scalo-sportradar",
+    "description": "recruitment task",
+    "type": "library",
+    "autoload": {
+        "psr-4": {
+            "Gsiorx\\ScaloSportradar\\": "src/"
+        }
+    },
+    "require": {}
+}
