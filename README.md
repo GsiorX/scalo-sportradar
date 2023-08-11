@@ -8,3 +8,6 @@
 
 ## Run commands inside the container
 `docker exec -it <container_id> bash`
+
+## Install required dependencies
+`docker exec <container_id> composer install`
