@@ -1,0 +1,15 @@
+{
+  "timeout": 10,
+  "minMsi": 100,
+  "source": {
+    "directories": [
+      "src"
+    ]
+  },
+  "logs": {
+    "text": "output/unit/mutation/infection.log",
+    "summary": "output/unit/mutation/summary.log",
+    "debug": "output/unit/mutation/debug.log",
+    "perMutator": "output/unit/mutation/per-mutator.md"
+  }
+}
