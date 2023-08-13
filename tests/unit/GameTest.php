@@ -1,7 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace AppTests\Unit;
 
+use App\Game\Game;
 use App\Team\Team;
 use PHPUnit\Framework\TestCase;
 
@@ -17,8 +20,8 @@ final class GameTest extends TestCase
         );
 
         // When I get the names of the teams
-        $homeTeamName = $game->getHomeTeam();
-        $awayTeamName = $game->getAwayTeam();
+        $homeTeamName = $game->getHomeTeamName();
+        $awayTeamName = $game->getAwayTeamName();
 
         // Then I expect the home team to be 'Team 1'
         $this->assertSame('Team 1', $homeTeamName);
