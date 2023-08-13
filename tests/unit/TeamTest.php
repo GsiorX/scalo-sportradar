@@ -1,12 +1,12 @@
 <?php
 
-namespace unit;
+namespace AppTests\Unit;
 
-use App\ScaloSportradar\Team;
+use App\Team\Team;
 use PHPUnit\Framework\TestCase;
 
-/** @covers \App\ScaloSportradar\Team */
-class TeamTest extends TestCase
+/** @covers \App\Team\Team */
+final class TeamTest extends TestCase
 {
     public function testTeamName(): void
     {
