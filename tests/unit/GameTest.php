@@ -6,6 +6,7 @@ namespace AppTests\Unit;
 
 use App\Exception\NegativeScoreException;
 use App\Exception\NonUniqueTeamNameException;
+use App\Exception\StartGameException;
 use App\Game\Game;
 use App\Team\Team;
 use Generator;
@@ -111,6 +112,80 @@ final class GameTest extends TestCase
         $game->startGame();
 
         // Then I expect the start time to be set
+        $this->assertSame($startTime, $game->getStartTime());
+    }
+
+    public function testStartGameFailsIfOnlyHomeTeamIsSet(): void
+    {
+        // Given I have a game with one team only
+        $team1Name = 'Team 1';
+
+        $team1 = new Team();
+        $team1->setName($team1Name);
+
+        $game = new Game();
+        $game->setHomeTeam($team1);
+
+        // Then I expect an exception to be thrown
+        $this->expectException(StartGameException::class);
+
+        // When I start the game
+        $game->startGame();
+    }
+
+    public function testStartGameFailsIfOnlyAwayTeamIsSet(): void
+    {
+        // Given I have a game with one team only
+        $team1Name = 'Team 1';
+
+        $team1 = new Team();
+        $team1->setName($team1Name);
+
+        $game = new Game();
+        $game->setAwayTeam($team1);
+
+        // Then I expect an exception to be thrown
+        $this->expectException(StartGameException::class);
+
+        // When I start the game
+        $game->startGame();
+    }
+
+    public function testStartGameFailsIfScoreHasBeenSet(): void
+    {
+        // Given I have a game with two teams
+        $team1Name = 'Team 1';
+        $team2Name = 'Team 2';
+
+        $team1 = new Team();
+        $team1->setName($team1Name);
+        $team2 = new Team();
+        $team2->setName($team2Name);
+
+        $game = new Game();
+        $game->setAwayTeam($team1);
+        $game->setHomeTeam($team2);
+
+        // And I set the score before starting the match
+        $game->updateScore(1, 0);
+
+        // Then I expect an exception to be thrown
+        $this->expectException(StartGameException::class);
+
+        // When I start the game
+        $game->startGame();
+    }
+
+    public function testSetStartTime(): void
+    {
+        // Given I have a game
+        $game = new Game();
+
+        // When I set the start time
+        $startTime = (new \DateTimeImmutable())->getTimestamp();
+
+        // Then I expect the start time to be set
+        $game->setStartTime($startTime);
         $this->assertSame($startTime, $game->getStartTime());
     }
 

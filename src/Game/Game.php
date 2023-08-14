@@ -6,6 +6,7 @@ namespace App\Game;
 
 use App\Exception\NegativeScoreException;
 use App\Exception\NonUniqueTeamNameException;
+use App\Exception\StartGameException;
 use App\Team\TeamInterface;
 
 final class Game implements GameInterface
@@ -56,7 +57,21 @@ final class Game implements GameInterface
 
     public function startGame(): void
     {
+        // Make sure the team names are set and the scores are 0
+        if (!isset($this->homeTeam, $this->awayTeam)) {
+            throw new StartGameException();
+        }
+
+        if ($this->homeTeamScore !== 0 || $this->awayTeamScore !== 0) {
+            throw new StartGameException();
+        }
+
         $this->startTime = (new \DateTimeImmutable())->getTimestamp();
+    }
+
+    public function setStartTime(int $timestamp): void
+    {
+        $this->startTime = $timestamp;
     }
 
     public function getStartTime(): int

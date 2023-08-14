@@ -22,6 +22,8 @@ interface GameInterface
 
     public function startGame(): void;
 
+    public function setStartTime(int $timestamp): void;
+
     public function getStartTime(): int;
 
     public function updateScore(int $homeTeamScore, int $awayTeamScore): void;
