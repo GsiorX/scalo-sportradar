@@ -89,6 +89,31 @@ final class GameTest extends TestCase
         $this->assertSame(0, $awayTeamScore);
     }
 
+    public function testStartGameSetsStartTime(): void
+    {
+        // Given I have a game with two teams
+        $team1Name = 'Team 1';
+        $team2Name = 'Team 2';
+
+        $team1 = new Team();
+        $team1->setName($team1Name);
+        $team2 = new Team();
+        $team2->setName($team2Name);
+
+        $game = new Game();
+        $game->setHomeTeam($team1);
+        $game->setAwayTeam($team2);
+
+        // And I have a start time
+        $startTime = (new \DateTimeImmutable())->getTimestamp();
+
+        // When I start the game
+        $game->startGame();
+
+        // Then I expect the start time to be set
+        $this->assertSame($startTime, $game->getStartTime());
+    }
+
     public function testUpdateScore(): void
     {
         // Given I have a game with two teams
@@ -237,49 +262,49 @@ final class GameTest extends TestCase
             [
                 'homeTeamScore' => -1,
                 'awayTeamScore' => 0,
-            ]
+            ],
         ];
 
         yield 'negative away team score' => [
             [
                 'homeTeamScore' => 0,
                 'awayTeamScore' => -1,
-            ]
+            ],
         ];
 
         yield 'negative home and away team score' => [
             [
                 'homeTeamScore' => -1,
                 'awayTeamScore' => -1,
-            ]
+            ],
         ];
 
         yield 'negative home team score and positive away team score' => [
             [
                 'homeTeamScore' => -1,
                 'awayTeamScore' => 1,
-            ]
+            ],
         ];
 
         yield 'positive home team score and negative away team score' => [
             [
                 'homeTeamScore' => 1,
                 'awayTeamScore' => -1,
-            ]
+            ],
         ];
 
         yield 'zero home team score and negative away team score' => [
             [
                 'homeTeamScore' => 0,
                 'awayTeamScore' => -1,
-            ]
+            ],
         ];
 
         yield 'negative home team score and zero away team score' => [
             [
                 'homeTeamScore' => -1,
                 'awayTeamScore' => 0,
-            ]
+            ],
         ];
     }
 }

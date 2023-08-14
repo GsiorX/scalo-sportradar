@@ -6,16 +6,17 @@ namespace App\Game;
 
 use App\Exception\NegativeScoreException;
 use App\Exception\NonUniqueTeamNameException;
-use App\Team\Team;
+use App\Team\TeamInterface;
 
 final class Game implements GameInterface
 {
-    private Team $homeTeam;
-    private Team $awayTeam;
+    private TeamInterface $homeTeam;
+    private TeamInterface $awayTeam;
+    private int $startTime;
     private int $homeTeamScore = 0;
     private int $awayTeamScore = 0;
 
-    public function setHomeTeam(Team $homeTeam): void
+    public function setHomeTeam(TeamInterface $homeTeam): void
     {
         if (isset($this->awayTeam) && $homeTeam->getName() === $this->awayTeam->getName()) {
             throw new NonUniqueTeamNameException();
@@ -24,7 +25,7 @@ final class Game implements GameInterface
         $this->homeTeam = $homeTeam;
     }
 
-    public function setAwayTeam(Team $awayTeam): void
+    public function setAwayTeam(TeamInterface $awayTeam): void
     {
         if (isset($this->homeTeam) && $awayTeam->getName() === $this->homeTeam->getName()) {
             throw new NonUniqueTeamNameException();
@@ -51,6 +52,16 @@ final class Game implements GameInterface
     public function getAwayTeamScore(): int
     {
         return $this->awayTeamScore;
+    }
+
+    public function startGame(): void
+    {
+        $this->startTime = (new \DateTimeImmutable())->getTimestamp();
+    }
+
+    public function getStartTime(): int
+    {
+        return $this->startTime;
     }
 
     public function updateScore(int $homeTeamScore, int $awayTeamScore): void

@@ -4,6 +4,6 @@ declare(strict_types=1);
 
 namespace App\Exception;
 
-final class NegativeScoreException extends \Exception
+final class TeamAlreadyPlayingException extends \Exception
 {
 }
