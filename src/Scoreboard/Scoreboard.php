@@ -18,7 +18,8 @@ final class Scoreboard implements ScoreboardInterface
     {
         // Make sure the teams are unique
         foreach ($this->games as $existingGame) {
-            if ($existingGame->getHomeTeamName() === $game->getHomeTeamName()
+            if (
+                $existingGame->getHomeTeamName() === $game->getHomeTeamName()
                 || $existingGame->getHomeTeamName() === $game->getAwayTeamName()
                 || $existingGame->getAwayTeamName() === $game->getHomeTeamName()
                 || $existingGame->getAwayTeamName() === $game->getAwayTeamName()
@@ -83,6 +84,7 @@ final class Scoreboard implements ScoreboardInterface
             throw new \InvalidArgumentException('Game not found');
         }
 
+        /** @var int $index */
         return $index;
     }
 }

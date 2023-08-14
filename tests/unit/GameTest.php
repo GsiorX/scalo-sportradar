@@ -265,8 +265,9 @@ final class GameTest extends TestCase
         $game->updateScore(-1, 0);
     }
 
-    /** @dataProvider provideScenariosForScoreValidation
-     * @param array $score <string, int>
+    /**
+     * @dataProvider provideScenariosForScoreValidation
+     * @param array<string, int> $score
      * @throws NegativeScoreException
      */
     public function testUpdateScoreWithNegativeValueFails(array $score): void

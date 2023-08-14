@@ -39,7 +39,9 @@ final class ScoreboardTest extends TestCase
         $this->assertCount(1, $scoreboard->getGames());
 
         // And I expect the game to have the correct start time
-        $this->assertSame($startTime, current($scoreboard->getGames())->getStartTime());
+        /** @var Game $scoreboardGame */
+        $scoreboardGame = current($scoreboard->getGames());
+        $this->assertSame($startTime, $scoreboardGame->getStartTime());
     }
 
     public function testStartGameFailsIfOneOfTheTeamsIsAlreadyOnTheScoreboard(): void
@@ -122,6 +124,7 @@ final class ScoreboardTest extends TestCase
         $scoreboard->updateScore($game, 1, 0);
 
         // Then I expect the home team's score to be 1
+        /** @var Game $gameData */
         $gameData = current($scoreboard->getGames());
 
         $this->assertSame(1, $gameData->getHomeTeamScore());
@@ -232,6 +235,12 @@ final class ScoreboardTest extends TestCase
         $scoreboard->startGame($game3);
         $scoreboard->startGame($game4);
 
+        // And I set start times manually
+        $game1->setStartTime(4);
+        $game2->setStartTime(2);
+        $game3->setStartTime(3);
+        $game4->setStartTime(1);
+
         // And I have updated the score of all four games
         $scoreboard->updateScore($game1, 0, 0);
         $scoreboard->updateScore($game2, 0, 0);
@@ -243,10 +252,10 @@ final class ScoreboardTest extends TestCase
 
         // Then I expect the summary to be correct
         $this->assertSame([
-            'Team 1 0 - Team 2 0',
+            'Team 7 0 - Team 8 0',
             'Team 3 0 - Team 4 0',
             'Team 5 0 - Team 6 0',
-            'Team 7 0 - Team 8 0',
+            'Team 1 0 - Team 2 0',
         ], $summary);
     }
 }
