@@ -11,3 +11,21 @@
 
 ## Install required dependencies
 `docker exec <container_id> composer install`
+
+## Run unit tests
+`docker exec <container_id> composer tests:unit`
+
+## Run phpstan
+`docker exec <container_id> composer phpstan`
+
+## Run phpcs
+`docker exec <container_id> composer phpcs`
+
+## Run mutation tests
+`docker exec <container_id> composer mutation`
+
+## Assumptions
+- Team name cannot be empty
+- Team name must be unique across a game
+- Team names must be unique across games on the scoreboard
+- Score cannot be negative
