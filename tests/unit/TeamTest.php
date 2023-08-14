@@ -2,6 +2,7 @@
 
 namespace AppTests\Unit;
 
+use App\Exception\BadTeamNameException;
 use App\Team\Team;
 use PHPUnit\Framework\TestCase;
 

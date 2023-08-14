@@ -14,9 +14,17 @@ final class GameTest extends TestCase
     public function testGetTeamNames(): void
     {
         // Given I have a game with two teams
+        $team1Name = 'Team 1';
+        $team2Name = 'Team 2';
+
+        $team1 = new Team();
+        $team1->setName($team1Name);
+        $team2 = new Team();
+        $team2->setName($team2Name);
+
         $game = new Game(
-            new Team('Team 1'),
-            new Team('Team 2')
+            $team1,
+            $team2,
         );
 
         // When I get the names of the teams
@@ -32,9 +40,17 @@ final class GameTest extends TestCase
     public function testGetInitialScore(): void
     {
         // Given I have a game with two teams
+        $team1Name = 'Team 1';
+        $team2Name = 'Team 2';
+
+        $team1 = new Team();
+        $team1->setName($team1Name);
+        $team2 = new Team();
+        $team2->setName($team2Name);
+
         $game = new Game(
-            new Team('Team 1'),
-            new Team('Team 2')
+            $team1,
+            $team2,
         );
 
         // When I get the score of the game
@@ -50,9 +66,17 @@ final class GameTest extends TestCase
     public function testUpdateScore(): void
     {
         // Given I have a game with two teams
+        $team1Name = 'Team 1';
+        $team2Name = 'Team 2';
+
+        $team1 = new Team();
+        $team1->setName($team1Name);
+        $team2 = new Team();
+        $team2->setName($team2Name);
+
         $game = new Game(
-            new Team('Team 1'),
-            new Team('Team 2')
+            $team1,
+            $team2,
         );
 
         // When I update the score of the game

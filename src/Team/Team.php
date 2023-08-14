@@ -4,10 +4,19 @@ declare(strict_types=1);
 
 namespace App\Team;
 
+use App\Exception\BadTeamNameException;
+
 final class Team implements TeamInterface
 {
-    public function __construct(private readonly string $name)
+    private string $name;
+
+    public function setName(string $name): void
     {
+        if (empty(trim($name))) {
+            throw new BadTeamNameException();
+        }
+
+        $this->name = $name;
     }
 
     public function getName(): string
