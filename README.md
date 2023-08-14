@@ -26,6 +26,7 @@
 
 ## Assumptions
 - Team name cannot be empty
+- Team name cannot be a whitespace character
 - Team name must be unique across a game
 - Team names must be unique across games on the scoreboard
 - Score cannot be negative
