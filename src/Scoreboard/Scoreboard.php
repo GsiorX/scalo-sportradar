@@ -18,6 +18,11 @@ class Scoreboard implements ScoreboardInterface
         // TODO: Implement finishGame() method.
     }
 
+    public function updateScore(Game $game, int $homeTeamScore, int $awayTeamScore): void
+    {
+        // TODO: Implement updateScore() method.
+    }
+
     public function getGames(): array
     {
         // TODO: Implement getGames() method.

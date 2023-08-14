@@ -10,6 +10,8 @@ interface ScoreboardInterface
 
     public function finishGame(Game $game): void;
 
+    public function updateScore(Game $game, int $homeTeamScore, int $awayTeamScore): void;
+
     public function getGames(): array;
 
     public function getSummary(): array;

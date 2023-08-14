@@ -30,3 +30,5 @@
 - Team name must be unique across a game
 - Team names must be unique across games on the scoreboard
 - Score cannot be negative
+
+- The team on the left is the home team in the summary list
