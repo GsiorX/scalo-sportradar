@@ -26,11 +26,17 @@ final class ScoreboardTest extends TestCase
         $game->setHomeTeam($homeTeam);
         $game->setAwayTeam($awayTeam);
 
+        // And I have startTime
+        $startTime = (new \DateTimeImmutable())->getTimestamp();
+
         // When I start a game
         $scoreboard->startGame($game);
 
         // Then I expect the game to be in the list of games
         $this->assertCount(1, $scoreboard->getGames());
+
+        // And I expect the game to have the correct start time
+        $this->assertSame($game, $scoreboard->getGames()[$startTime]);
     }
 
     public function testFinishGame(): void
