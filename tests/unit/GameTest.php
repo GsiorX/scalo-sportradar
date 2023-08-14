@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace AppTests\Unit;
 
-use App\Exception\BadTeamNameException;
 use App\Exception\NegativeScoreException;
 use App\Exception\NonUniqueTeamNameException;
 use App\Game\Game;
